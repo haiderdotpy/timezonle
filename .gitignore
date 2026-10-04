@@ -1,0 +1,21 @@
+# Dependencies and build output — reinstall / regenerate, never commit.
+node_modules/
+dist/
+
+# Acceptance screenshots live here when regenerated locally.
+# (The committed set under screenshots/ is the current reference.)
+# screenshots/
+
+# Editor, OS, and tool cruft.
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Local env and logs.
+.env
+.env.local
+*.log

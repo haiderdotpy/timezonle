@@ -1,0 +1,3 @@
+# GeoNames ids (one per line) excluded from target candidacy.
+# These are cities that are hard to place in a timezone-guessing game.
+# Lines starting with # are comments. Start with an empty list.

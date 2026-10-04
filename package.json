@@ -1,0 +1,26 @@
+{
+  "name": "timezonle",
+  "version": "1.0.0",
+  "description": "Timezonle — daily geography puzzle game (static web app)",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "data:fetch": "node scripts/fetch-geonames.mjs",
+    "data:cities": "node scripts/build-cities.mjs",
+    "data:targets": "node scripts/build-targets.mjs",
+    "data:schedule": "node scripts/build-schedule.mjs",
+    "data:validate": "node scripts/validate.mjs",
+    "data:all": "node scripts/build-cities.mjs && node scripts/build-targets.mjs && node scripts/build-schedule.mjs && node scripts/validate.mjs",
+    "screenshots": "node scripts/screenshot.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.4",
+    "playwright": "^1.63.0",
+    "typescript": "^5.6.0",
+    "vite": "^6.0.0",
+    "vitest": "^3.0.0"
+  }
+}
