@@ -2,7 +2,7 @@
 // shuffle seed, and game tuning. Mirror of values used by scripts/ pipeline.
 
 /** First puzzle day, UTC midnight. */
-export const LAUNCH_DATE_UTC = '2026-01-01T00:00:00.000Z';
+export const LAUNCH_DATE_UTC = '2026-10-04T00:00:00.000Z';
 export const LAUNCH_DATE_MS = Date.parse(LAUNCH_DATE_UTC);
 
 /** Salt for SHA-256(salt + cityId) schedule hashing. Must match scripts/schedule-salt. */

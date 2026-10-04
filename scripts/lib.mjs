@@ -4,7 +4,7 @@ import { readFileSync, existsSync } from 'node:fs';
 
 export const SCHEDULE_SALT = 'timezonle-salt-v1';
 export const SCHEDULE_SEED = 20260101;
-export const LAUNCH_DATE = '2026-01-01T00:00:00.000Z';
+export const LAUNCH_DATE = '2026-10-04T00:00:00.000Z';
 
 export function sha256Hex(s) {
   return createHash('sha256').update(s, 'utf8').digest('hex');

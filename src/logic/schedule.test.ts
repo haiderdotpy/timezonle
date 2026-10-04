@@ -14,13 +14,13 @@ describe('puzzle number', () => {
     expect(getPuzzleNumber(LAUNCH_DATE_MS + DAY_MS - 1)).toBe(1);
     expect(getPuzzleNumber(LAUNCH_DATE_MS + DAY_MS)).toBe(2);
     // One millisecond before midnight stays on day 1.
-    expect(getPuzzleNumber(Date.UTC(2026, 0, 1, 23, 59, 59, 999))).toBe(1);
-    expect(getPuzzleNumber(Date.UTC(2026, 0, 2, 0, 0, 0, 0))).toBe(2);
+    expect(getPuzzleNumber(Date.UTC(2026, 9, 4, 23, 59, 59, 999))).toBe(1);
+    expect(getPuzzleNumber(Date.UTC(2026, 9, 5, 0, 0, 0, 0))).toBe(2);
   });
 
   it('maps puzzle numbers to date strings', () => {
-    expect(puzzleDateStr(1)).toBe('2026-01-01');
-    expect(puzzleDateStr(2)).toBe('2026-01-02');
+    expect(puzzleDateStr(1)).toBe('2026-10-04');
+    expect(puzzleDateStr(2)).toBe('2026-10-05');
   });
 
   it('counts down to next UTC midnight with injected clock', () => {
