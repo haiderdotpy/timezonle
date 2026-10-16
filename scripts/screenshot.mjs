@@ -10,7 +10,7 @@ import { chromium } from 'playwright';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, '..');
 const PORT = 4173;
-const PUZZLE = 5;
+const PUZZLE = 1;
 
 function targetName() {
   const sched = JSON.parse(readFileSync(path.join(ROOT, 'public/data/schedule.json'), 'utf8'));

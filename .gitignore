@@ -6,6 +6,10 @@ dist/
 # (The committed set under screenshots/ is the current reference.)
 # screenshots/
 
+# Raw pipeline downloads (large; re-downloadable, never commit).
+scripts/raw/*
+!scripts/raw/README.md
+
 # Editor, OS, and tool cruft.
 .vscode/
 .idea/

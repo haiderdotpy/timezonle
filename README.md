@@ -91,11 +91,16 @@ npm run data:validate  # CI gate: exits non-zero on any inconsistency
   Prints a per-offset histogram and warns if one offset holds > 15%.
 - **Schedule**: seeded shuffle (seed `20260101`) stored as salted hashes.
   Append-only — regeneration keeps existing entries and appends new ones.
+- **Map picture** (`python3 scripts/render-world-map.py` → `public/world-map.jpg`):
+  grayscale coastlines-only render of Natural Earth 50m land, exact
+  ±180/±90 equirectangular so the SVG grid overlay registers by
+  construction. Needs `scripts/raw/ne_50m_land.geojson` (git-ignored).
 - **Validate**: targets exist, every tz resolves in `Intl`, no duplicate ids
   or schedule entries.
 
 **Attribution:** city data © GeoNames, CC BY 4.0
-(https://creativecommons.org/licenses/by/4.0/) — also credited in the app footer.
+(https://creativecommons.org/licenses/by/4.0/); map land data © Natural Earth
+— both credited in the app footer.
 
 ## Deploy
 

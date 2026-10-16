@@ -346,9 +346,45 @@ ol.guesses li.guess.enter { animation: row-in 200ms ease-out; }
 }
 .result-sub { color: var(--muted); margin: 0.25rem 0 1rem; font-variant-numeric: tabular-nums; }
 .result-outcome { font-weight: 600; margin: 0 0 1rem; }
-.result-card svg.world { display: block; width: 100%; height: auto; margin-bottom: 1rem; background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius); }
-.result-card .world-grat { stroke: var(--line); stroke-width: 1; fill: none; }
-.result-card .world-dot { fill: var(--accent); stroke: var(--bg); stroke-width: 1.5; }
+.worldmap {
+  position: relative;
+  aspect-ratio: 2 / 1;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 0.4rem;
+  background: #ffffff;
+}
+.worldmap img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  display: block;
+}
+.worldmap svg.world-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  border: none;
+  border-radius: 0;
+  margin: 0;
+  background: transparent;
+}
+.result-card .world-grid { stroke: var(--ink); stroke-width: 0.8; opacity: 0.35; vector-effect: non-scaling-stroke; }
+.result-card .world-dot { fill: var(--accent); stroke: #ffffff; stroke-width: 2; }
+.result-card .world-guess { fill: var(--muted); stroke: #ffffff; stroke-width: 1.5; opacity: 0.85; }
+.map-legend { color: var(--muted); font-size: 0.8rem; margin-bottom: 1rem; }
+.lg-dot { display: inline-block; width: 0.7em; height: 0.7em; border-radius: 50%; }
+.lg-answer { background: var(--accent); }
+.lg-guess { background: var(--muted); }
+@media (prefers-color-scheme: dark) {
+  .worldmap img { filter: invert(1) brightness(0.92); }
+  .worldmap { background: #000000; }
+}
 .result-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; }
 .copied-note { color: var(--muted); font-size: 0.9rem; }
 .result-countdown { color: var(--muted); font-size: 0.9rem; margin: 1rem 0 0; font-variant-numeric: tabular-nums; }

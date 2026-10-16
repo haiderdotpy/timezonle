@@ -28,7 +28,7 @@ import {
 } from '../storage/store.js';
 import { attachAutocomplete } from './autocomplete.js';
 import { renderRuler, rulerBounds, type RulerMarker } from './ruler.js';
-import { buildGraticule } from './world.js';
+import { buildMap, type MapDot } from './world.js';
 
 export interface AppOptions {
   clock?: Clock;
@@ -203,7 +203,7 @@ export async function startApp(root: HTMLElement, opts: AppOptions = {}): Promis
   countdown.setAttribute('aria-live', 'polite');
   const footer = document.createElement('footer');
   footer.textContent =
-    'City data © GeoNames (CC BY 4.0). Coastline reference © Natural Earth. ' +
+    'City data © GeoNames (CC BY 4.0). Map © Natural Earth. ' +
     'Offsets computed in your browser from IANA time zones.';
   const modalRoot = el('div', '');
 
@@ -384,7 +384,11 @@ export async function startApp(root: HTMLElement, opts: AppOptions = {}): Promis
     const finished = game.status !== 'playing';
     form.style.display = finished ? 'none' : '';
     if (finished) {
-      endBox.appendChild(resultCard(target, date, game.status === 'won' ? 'won' : 'lost', game.guesses.length, fbs));
+      const won = game.status === 'won';
+      const wrong: City[] = won
+        ? game.guesses.map((id) => byId.get(id)).filter((c): c is City => !!c && c.id !== target.id)
+        : [];
+      endBox.appendChild(resultCard(target, date, won ? 'won' : 'lost', game.guesses.length, fbs, wrong));
       countdown.hidden = true;
     } else {
       countdown.hidden = false;
@@ -398,6 +402,7 @@ export async function startApp(root: HTMLElement, opts: AppOptions = {}): Promis
     status: 'won' | 'lost',
     guessCount: number,
     fbs: Feedback[],
+    wrong: City[],
   ): HTMLElement {
     const card = el('div', 'result-card');
     const h = document.createElement('h2');
@@ -410,7 +415,28 @@ export async function startApp(root: HTMLElement, opts: AppOptions = {}): Promis
       status === 'won'
         ? `You got it in ${guessCount} ${guessCount === 1 ? 'guess' : 'guesses'}!`
         : `Out of guesses — the answer was ${target.name}.`;
-    card.append(h, sub2, buildGraticule(target.lat, target.lon, target.name), outcome);
+    card.append(h, sub2);
+    const dots: MapDot[] = wrong.map((c) => ({ lon: c.lon, lat: c.lat, label: c.name }));
+    card.appendChild(
+      buildMap(
+        {
+          answer: { lon: target.lon, lat: target.lat, label: target.name },
+          guesses: dots,
+        },
+        dataBase,
+      ),
+    );
+    const legend = el('div', 'map-legend');
+    const aDot = document.createElement('span');
+    aDot.className = 'lg-dot lg-answer';
+    legend.append(aDot, ' answer');
+    if (dots.length > 0) {
+      const gDot = document.createElement('span');
+      gDot.className = 'lg-dot lg-guess';
+      legend.append(', ', gDot, ' your guesses');
+    }
+    card.appendChild(legend);
+    card.appendChild(outcome);
 
     const actions = el('div', 'result-actions');
     const copy = document.createElement('button');

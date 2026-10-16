@@ -11,3 +11,11 @@
 # Attribution: GeoNames data is licensed CC BY 4.0
 # (https://creativecommons.org/licenses/by/4.0/). A credit footer is
 # included in the app UI.
+#
+# Map picture (for scripts/render-world-map.py, when network is blocked):
+# 1. Land: ne_50m_land.geojson from
+#    https://www.naturalearthdata.com/downloads/50m-physical-vectors/50m-land/
+# 2. Place it here as scripts/raw/ne_50m_land.geojson, then run:
+#    python3 scripts/render-world-map.py
+#
+# Raw downloads are git-ignored; only scripts/raw/README.md is committed.
